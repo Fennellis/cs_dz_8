@@ -13,7 +13,7 @@ PrintArray(arr);
 int[,] CreateArray(int rows, int columns)
 {
     int[,] array = new int[rows, columns];
-    FillArray(array, 1, 0, 1);  // Имя массива, начальное значение, начальный круг = 0 (внешний), начальное направление = 1 (вправо)
+    FillArray(array, 1, 0);  // Имя массива, начальное значение, начальный круг = 0 (внешний)
     return array;
 }
 
@@ -27,101 +27,87 @@ void PrintArray(int[,] array)
     }
 }
 
-void FillArray(int[,] array, int count, int round, int toggle)
+void FillArray(int[,] array, int count, int round)
 {
     int rows = array.GetLength(0);
     int columns = array.GetLength(1);
-    switch (toggle)
+
+    for (int i = round; i < columns - 1 - round; i++)
     {
-        case 1:
-            for (int i = round; i < columns - 1 - round; i++)
-            {
-                array[round, i] = count;
-                count++;
-                if (count > columns * rows) return;
-            }
-            toggle = 2;
-            break;
-        case 2:
-            for (int i = round; i < rows - 1 - round; i++)
-            {
-                array[i, columns - 1 - round] = count;
-                count++;
-                if (count > columns * rows) return;
-            }
-            toggle = 3;
-            break;
-        case 3:
-            for (int i = columns - 1 - round; i > round; i--)
-            {
-                array[rows - 1 - round, i] = count;
-                count++;
-                if (count > columns * rows) return;
-            }
-            toggle = 4;
-            break;
-        case 4:
-            for (int i = rows - 1 - round; i > round; i--)
-            {
-                array[i, round] = count;
-                count++;
-                if (count > columns * rows) return;
-            }
-            toggle = 1;
-            round++;
-            break;
+        array[round, i] = count;
+        count++;
+        if (count > columns * rows) return;
     }
-    FillArray(array, count, round, toggle);
+    for (int i = round; i < rows - 1 - round; i++)
+    {
+        array[i, columns - 1 - round] = count;
+        count++;
+        if (count > columns * rows) return;
+    }
+    for (int i = columns - 1 - round; i > round; i--)
+    {
+        array[rows - 1 - round, i] = count;
+        count++;
+        if (count > columns * rows) return;
+    }
+    for (int i = rows - 1 - round; i > round; i--)
+    {
+        array[i, round] = count;
+        count++;
+        if (count > columns * rows) return;
+    }
+    round++;
+    FillArray(array, count, round);
 }
 
 // // 1 round
 
-    // for (int i = 0; i < columns - 1; i++)
-    // {
-    //     array[0, i] = k;
-    //     k++;
-    // }
+// for (int i = 0; i < columns - 1; i++)
+// {
+//     array[0, i] = k;
+//     k++;
+// }
 
-    // for (int i = 0; i < rows - 1; i++)
-    // {
-    //     array[i, columns - 1] = k;
-    //     k++;
-    // }
+// for (int i = 0; i < rows - 1; i++)
+// {
+//     array[i, columns - 1] = k;
+//     k++;
+// }
 
-    // for (int i = columns - 1; i > 0; i--)
-    // {
-    //    array[rows - 1, i] = k;
-    //    k++; 
-    // }
+// for (int i = columns - 1; i > 0; i--)
+// {
+//    array[rows - 1, i] = k;
+//    k++; 
+// }
 
-    // for (int i = rows - 1; i > 0; i--)
-    // {
-    //     array[i, 0] = k;
-    //     k++;
-    // }
+// for (int i = rows - 1; i > 0; i--)
+// {
+//     array[i, 0] = k;
+//     k++;
+// }
 
 // // 2 round
 
-    // for (int i = 1; i < columns - 2; i++)
-    // {
-    //     array[1, i] = k;
-    //     k++;
-    // }
+// for (int i = 1; i < columns - 2; i++)
+// {
+//     array[1, i] = k;
+//     k++;
+// }
 
-    // for (int i = 1; i < rows - 2; i++)
-    // {
-    //     array[i, columns - 2] = k;
-    //     k++;
-    // }
+// for (int i = 1; i < rows - 2; i++)
+// {
+//     array[i, columns - 2] = k;
+//     k++;
+// }
 
-    // for (int i = columns - 2; i > 1; i--)
-    // {
-    //    array[rows - 2, i] = k;
-    //    k++; 
-    // }
+// for (int i = columns - 2; i > 1; i--)
+// {
+//    array[rows - 2, i] = k;
+//    k++; 
+// }
 
-    // for (int i = rows - 2; i > 1; i--)
-    // {
-    //     array[i, 1] = k;
-    //     k++;
-    // }
+// for (int i = rows - 2; i > 1; i--)
+// {
+//     array[i, 1] = k;
+//     k++;
+// }
