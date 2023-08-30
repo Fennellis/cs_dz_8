@@ -60,7 +60,7 @@ int[,] MatrixMult(int[,] firstMatrix, int [,] secondMatrix)
     {
         for(int j = 0; j < resultMatrix.GetLength(1); j++)
         {
-            for(int m = 0; m < resultMatrix.GetLength(0); m++)
+            for (int m = 0; m < firstMatrix.GetLength(1); m++)
             {
                 sum += firstMatrix[i,m] * secondMatrix[m,j];
             }
