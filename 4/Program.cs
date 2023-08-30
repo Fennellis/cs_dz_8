@@ -21,8 +21,8 @@ int [,,] CreateArray(int columns,int rows, int plane, int min, int max)
                 {
                     array[z,y,x] = new Random().Next(min, max + 1);
                     contains = false;
-                    for (int i = 0; i < z; i++)
-                        for (int j = 0; j < y; j++)
+                    for (int i = 0; i <= z; i++)
+                        for (int j = 0; j <= y; j++)
                             for (int k = 0; k < x; k++)
                             {
                                 if (array[i,j,k] == array[z,y,x]) contains = true;
